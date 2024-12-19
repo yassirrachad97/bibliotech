@@ -5,8 +5,9 @@ function Navbar() {
   const auth = useAuth();
 
   const signOutRedirect = () => {
+    auth.removeUser();
     const clientId = "1487qlgi773gpg7gq7sbn3gsa5";
-    const logoutUri = "<logout uri>";
+    const logoutUri = "http://localhost:5173/home";
     const cognitoDomain = "https://us-east-13dlsbkiyv.auth.us-east-1.amazoncognito.com";
     window.location.href = `${cognitoDomain}/logout?client_id=${clientId}&logout_uri=${encodeURIComponent(logoutUri)}`;
   };
@@ -52,7 +53,7 @@ function Navbar() {
               <span className="hidden sm:inline">{auth.user?.profile.email}</span>
               <button
                 className="bg-red-500 px-4 py-2 rounded-md hover:bg-red-700 transition-colors"
-                onClick={() => auth.removeUser()}
+                onClick={signOutRedirect}
               >
                 Sign Out
               </button>
