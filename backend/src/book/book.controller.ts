@@ -40,6 +40,7 @@ export class BookController {
     async suprimerBook(@Param('id') id: string): Promise<any>{
         if(!id){
             throw new BadRequestException('L\'id du livre est requiss');
+            
         }
         return  this.bookService.deleteBook(id);
     }
