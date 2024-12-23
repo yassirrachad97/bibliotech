@@ -6,21 +6,21 @@ function Navbar() {
 
   const signOutRedirect = () => {
     auth.removeUser();
-    const clientId = "1487qlgi773gpg7gq7sbn3gsa5";
+    const clientId = "4ho4ntrl0hniluavp3nf21su71";
     const logoutUri = "http://localhost:5173/home";
-    const cognitoDomain = "https://us-east-13dlsbkiyv.auth.us-east-1.amazoncognito.com";
+    const cognitoDomain = "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_oqNfCbxDA";
     window.location.href = `${cognitoDomain}/logout?client_id=${clientId}&logout_uri=${encodeURIComponent(logoutUri)}`;
   };
 
   return (
     <nav className="bg-blue-600 text-white shadow-md p-4">
       <div className="container mx-auto flex justify-between items-center">
-        {/* Logo */}
+      
         <div className="text-xl font-bold">
           <a href="/">Bibliothèque</a>
         </div>
 
-        {/* Navigation Links */}
+      
         <ul className="hidden md:flex space-x-6">
           <li>
             <a href="/" className="hover:text-yellow-300">
