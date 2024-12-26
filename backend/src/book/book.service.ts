@@ -5,6 +5,7 @@ import { CreateBookDto } from './DTO/create-book.dto';
 import { v4 as uuidv4 } from 'uuid';
 import { ScanCommand } from '@aws-sdk/client-dynamodb';
 import { UpdateBookDto } from './DTO/update-book.dto';
+import { CategoryService } from 'src/categories/categories.service';
 
 @Injectable()
 export class BookService {
@@ -12,9 +13,14 @@ export class BookService {
         @Inject('DYNAMODB_CLIENT')
         private readonly dynamoDbClient: DynamoDBDocumentClient,
         private readonly configService: ConfigService,
+        private readonly categoryService: CategoryService,
     ) {}
 
     async addBook(createBookDto: CreateBookDto): Promise<any> {
+        const category = await this.categoryService.getCategory(createBookDto.categoryId);
+        if (!category) {
+          throw new NotFoundException('Catégorie non trouvée');
+        }
         const book = {
             id: uuidv4(),
             createdAt: new Date().toISOString(),

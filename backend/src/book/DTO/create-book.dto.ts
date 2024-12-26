@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty, IsString, IsUUID } from 'class-validator';
 
 export class CreateBookDto {
 
@@ -18,6 +18,6 @@ export class CreateBookDto {
   author: string;
 
   @IsNotEmpty()
-  @IsString()
-  category: string;
+  @IsUUID('4') 
+  categoryId: string;
 }

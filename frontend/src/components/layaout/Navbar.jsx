@@ -4,13 +4,16 @@ import { useAuth } from "react-oidc-context";
 function Navbar() {
   const auth = useAuth();
 
+
+
   const signOutRedirect = () => {
     auth.removeUser();
-    const clientId = "4ho4ntrl0hniluavp3nf21su71";
-    const logoutUri = "http://localhost:5173/home";
-    const cognitoDomain = "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_oqNfCbxDA";
+    const clientId = "4hc3tbougdmom12gi2349ni01g";
+    const logoutUri = "http://localhost:5173/";
+    const cognitoDomain = "https://us-east-1bixyxci9j.auth.us-east-1.amazoncognito.com";
     window.location.href = `${cognitoDomain}/logout?client_id=${clientId}&logout_uri=${encodeURIComponent(logoutUri)}`;
   };
+
 
   return (
     <nav className="bg-blue-600 text-white shadow-md p-4">
