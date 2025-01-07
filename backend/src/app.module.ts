@@ -1,10 +1,20 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { ConfigModule } from '@nestjs/config';
+import { DynamoDBModule } from './dynamodb/dynamodb.module';
+import { BookModule } from './book/book.module';
+import { CategoriesModule } from './categories/categories.module';
+import { EmpruntModule } from './emprunt/emprunt.module';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,  
+      envFilePath: '.env'
+    }),
+    DynamoDBModule,
+    BookModule,
+    CategoriesModule,
+    EmpruntModule,
+  ],
 })
 export class AppModule {}
