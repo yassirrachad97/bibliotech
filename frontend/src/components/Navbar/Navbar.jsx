@@ -4,22 +4,26 @@ import { useAuth } from "react-oidc-context";
 function Navbar() {
   const auth = useAuth();
 
+
+
   const signOutRedirect = () => {
-    const clientId = "1487qlgi773gpg7gq7sbn3gsa5";
-    const logoutUri = "<logout uri>";
-    const cognitoDomain = "https://us-east-13dlsbkiyv.auth.us-east-1.amazoncognito.com";
+    auth.removeUser();
+    const clientId = "4hc3tbougdmom12gi2349ni01g";
+    const logoutUri = "http://localhost:5173/";
+    const cognitoDomain = "https://us-east-1bixyxci9j.auth.us-east-1.amazoncognito.com";
     window.location.href = `${cognitoDomain}/logout?client_id=${clientId}&logout_uri=${encodeURIComponent(logoutUri)}`;
   };
+
 
   return (
     <nav className="bg-blue-600 text-white shadow-md p-4">
       <div className="container mx-auto flex justify-between items-center">
-        {/* Logo */}
+      
         <div className="text-xl font-bold">
           <a href="/">Bibliothèque</a>
         </div>
 
-        {/* Navigation Links */}
+      
         <ul className="hidden md:flex space-x-6">
           <li>
             <a href="/" className="hover:text-yellow-300">
@@ -33,14 +37,10 @@ function Navbar() {
           </li>
           <li>
             <a href="/about" className="hover:text-yellow-300">
-              À propos
+              About
             </a>
           </li>
-          <li>
-            <a href="/contact" className="hover:text-yellow-300">
-              Contact
-            </a>
-          </li>
+         
         </ul>
 
         {/* Auth Buttons */}
@@ -52,7 +52,7 @@ function Navbar() {
               <span className="hidden sm:inline">{auth.user?.profile.email}</span>
               <button
                 className="bg-red-500 px-4 py-2 rounded-md hover:bg-red-700 transition-colors"
-                onClick={() => auth.removeUser()}
+                onClick={signOutRedirect}
               >
                 Sign Out
               </button>

@@ -1,18 +1,25 @@
-import React from "react";
-import Navbar from "./components/layaout/Navbar";
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'; 
+import Home from './pages/Home/Home'; 
+import About from './pages/About/About'; 
+import BookList from './components/BookList/BookList'; 
+import BookDetails from './components/BookDetails/BookDetails'; 
 
-function App() {
+const App = () => {
   return (
-    <div>
-      <Navbar />
-      <div className="p-8">
-        <h1 className="text-4xl font-bold">Bienvenue à la Bibliothèque</h1>
-        <p className="text-lg text-gray-700">
-          Explorez notre collection de livres et découvrez un monde de connaissances.
-        </p>
-      </div>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        {/* Route principale */}
+        <Route path="/" element={<Home />}>
+          {/* Enfants de Home */}
+          <Route index element={<BookList />} /> {/* Route par défaut */}
+          <Route path="book/:id" element={<BookDetails />} /> {/* Détails du livre */}
+        </Route>
+        {/* Route pour About */}
+        <Route path="about" element={<About />} /> 
+      </Routes>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
