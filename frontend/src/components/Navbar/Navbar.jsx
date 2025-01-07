@@ -37,14 +37,10 @@ function Navbar() {
           </li>
           <li>
             <a href="/about" className="hover:text-yellow-300">
-              À propos
+              About
             </a>
           </li>
-          <li>
-            <a href="/contact" className="hover:text-yellow-300">
-              Contact
-            </a>
-          </li>
+         
         </ul>
 
         {/* Auth Buttons */}
